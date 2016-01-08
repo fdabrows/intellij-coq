@@ -1,0 +1,62 @@
+Version 0.1
+
+Coloration
+Commentaires
+Liste des definitions
+Commandes coqtop de base, touches raccourcis, boutons, groupe dans le menu
+Surlignement et lecture seule de la zone validée
+
+TODO : COMPILATION
+TODO : Dependances (-I )
+TODO : au redemarrage supprimer la selection.
+
+
+TODO : PREPARATION DU PLUGIN
+TODO : GIT
+
+Version 0.2
+
+Indentation
+Coloration speciale des "admit"
+Pliage des preuves
+
+TODO : FONCTION DE RECHERCHE DE CHAINE EN DEHORS DES COMMENTAIRES
+
+Version 0.3
+
+Fenetre TODO
+Fenetre COMMENTAIRES POUR PARTICIPANTS
+
+Version 0.4
+
+Recherche de l'utilisation des elements
+
+Version 1.0
+
+Renommage
+
+
+Premiere version totalement fonctionnelle à partir des versions precedentes
+
+////////////////////////////////////////////////
+
+Mise en place du plugin
+Creation d'un git et mise en place du site web
+
+////////////////////////////////////////////////
+
+
+
+Communication toplevel
+
+let do_vernac () =
+  msgerrnl (mt ()); // nouvelle ligne
+  if !print_emacs then msgerr (str (top_buffer.prompt()));
+  resynch_buffer top_buffer;
+  begin
+    try
+      raw_do_vernac top_buffer.tokens
+    with any ->
+      msgnl (print_toplevel_error (process_error any))
+  end;
+  flush_all()
