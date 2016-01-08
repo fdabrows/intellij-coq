@@ -48,6 +48,9 @@ public class CoqtopEngine implements CoqStateListener {
     private static CoqtopEngine running = null;
 
 
+    // returns the CoqtopEngine associated with an editor.
+    //@returns may return null
+    //@assumes editor != null
     public static CoqtopEngine getEngine(Editor editor) throws IOException, InvalidPrompt, InvalidState {
 
         CoqtopEngine coqtopEngine = editor.getDocument().getUserData(editorKey);

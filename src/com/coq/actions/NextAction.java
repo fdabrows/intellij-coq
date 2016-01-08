@@ -1,4 +1,3 @@
-
 /*
  * IntelliJ-coqplugin  / Plugin IntelliJ for Coq
  * Copyright (c) 2016
@@ -31,9 +30,6 @@ import com.intellij.openapi.project.Project;
 
 import java.io.IOException;
 
-/**
- * Created by dabrowski on 29/11/2015.
- */
 public class NextAction extends AnAction{
 
     @Override
@@ -41,8 +37,11 @@ public class NextAction extends AnAction{
         try {
             Project p = e.getProject();
             Editor editor = FileEditorManager.getInstance(p).getSelectedTextEditor();
+            // Editor my be null if no editor is selected
+            if (editor == null) return;
             CoqtopEngine coqtopEngine = CoqtopEngine.getEngine(editor);
-            if (coqtopEngine != null) coqtopEngine.next();
+            if (coqtopEngine == null) return;
+            coqtopEngine.next();
         } catch (IOException ioException){
             ioException.printStackTrace();
         } catch (NoCoqProcess noCoqProcess) {

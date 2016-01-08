@@ -39,8 +39,9 @@ public class StopAction extends AnAction {
         try {
             Project p = e.getProject();
             Editor editor = FileEditorManager.getInstance(p).getSelectedTextEditor();
+            if (editor == null) return;
             CoqtopEngine coqtopEngine = CoqtopEngine.getEngine(editor);
-            coqtopEngine.stop();
+            if (coqtopEngine != null) coqtopEngine.stop();
         } catch (IOException ioException){
             ioException.printStackTrace();
         } catch (InvalidPrompt invalidPrompt) {

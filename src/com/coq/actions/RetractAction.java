@@ -40,14 +40,14 @@ public class RetractAction extends AnAction {
         try {
             Project p = e.getProject();
             Editor editor = FileEditorManager.getInstance(p).getSelectedTextEditor();
+            if (editor == null) return;
             CoqtopEngine coqtopEngine = CoqtopEngine.getEngine(editor);
-            coqtopEngine.retract();
+            if (coqtopEngine != null) coqtopEngine.retract();
         } catch (IOException ioException){
             ioException.printStackTrace();
         } catch (NoCoqProcess noCoqProcess) {
             noCoqProcess.printStackTrace();
         } catch (InvalidPrompt invalidPrompt) {
-            System.out.println("Invalid Prompt " + invalidPrompt.str);
             invalidPrompt.printStackTrace();
         } catch (InvalidState invalidState) {
             invalidState.printStackTrace();

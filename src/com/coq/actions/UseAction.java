@@ -29,9 +29,6 @@ import com.intellij.openapi.project.Project;
 
 import java.io.IOException;
 
-/**
- * Created by dabrowski on 05/01/2016.
- */
 public class UseAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -39,9 +36,9 @@ public class UseAction extends AnAction {
         try {
             Project p = e.getProject();
             Editor editor = FileEditorManager.getInstance(p).getSelectedTextEditor();
-            CoqtopEngine coqtopEngine = null;
-            coqtopEngine = CoqtopEngine.getEngine(editor);
-            coqtopEngine.next();
+            if (editor == null) return;
+            CoqtopEngine coqtopEngine = CoqtopEngine.getEngine(editor);
+            if (coqtopEngine != null) coqtopEngine.next();
 
         } catch (IOException e1) {
             e1.printStackTrace();
