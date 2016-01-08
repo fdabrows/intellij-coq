@@ -1,0 +1,78 @@
+<idea-plugin version="2">
+  <id>com.univ-orleans.coqplugin</id>
+  <name>Coq IDE</name>
+  <version>0.1</version>
+  <vendor email="frederic.dabrowski@univ-orleans.fr" url="http://www.univ-orleans.fr">University of Orleans</vendor>
+
+  <description><![CDATA[
+      Coq IDE plugin
+    ]]></description>
+
+  <change-notes><![CDATA[
+
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="141.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation = "com.coq.CoqFileTypeFactory"/>
+    <lang.parserDefinition language="Coq" implementationClass="com.coq.CoqParserDefinition"/>
+    <lang.syntaxHighlighterFactory key="Coq" implementationClass="com.coq.CoqSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.coq.CoqColorSettingsPage"/>
+    <lang.psiStructureViewFactory language="Coq" implementationClass="com.coq.CoqStructureViewFactory"/>
+    <toolWindow id="Proof tree" icon="/com/coq/icons/logo.png" anchor="right"
+                factoryClass="com.coq.ProofView"/>
+    <toolWindow id="Messages" icon="/com/coq/icons/logo.png" anchor="bottom"
+                factoryClass="com.coq.MessageView"/>
+    <moduleBuilder builderClass="com.coq.CoqProjectWizard" id="Coq Project" order="first"/>
+    <!-- <compiler implementation="com.coq.actions.CompileAction" /> -->
+    <applicationService serviceImplementation="com.coq.CoqSettings"/>
+    <treeStructureProvider implementation="com.coq.CoqTreeStructureProvider"/>
+    <!-- Add your extensions here -->
+    <!-- <configurationType implementation="com.coq.CoqRunConfigurationType"/>-->
+    <applicationConfigurable instance="com.coq.CoqSettingsConfigurable" groupId="build" displayName="Coq"/>
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <group id="CoqMenu" text="Coq" description="Coq actions"  popup="true">
+      <action id="com.coq.actions.NextAction" class="com.coq.actions.NextAction" text="Next"
+              description="Next Line">
+      </action>
+      <action id="com.coq.actions.BackAction" class="com.coq.actions.BackAction" text="Undo"
+              description="Last Line">
+      </action>
+      <action id="com.coq.actions.UseAction" class="com.coq.actions.UseAction" text="Use"
+              description="End of file">
+      </action>
+      <action id="com.coq.actions.RetractAction" class="com.coq.actions.RetractAction" text="Retract"
+              description="Last Line">
+      </action>
+      <action id="com.coq.actions.GotoAction" class="com.coq.actions.GotoAction" text="Go to cursor"
+              description="Last Line">
+      </action>
+      <separator/>
+      <add-to-group group-id="MainMenu" relative-to-action="ToolsMenu" anchor="before"/>
+      <action id="com.coq.actions.StopAction" class="com.coq.actions.StopAction" text="Stop coqtop"
+              description="Last Line">
+      </action>
+    </group>
+
+    <action id="com.coq.actions.CompileAction" class="com.coq.actions.CompileAction" text="Compile"
+            description="Compile">
+      <add-to-group group-id="MainMenu" anchor="first"/>
+      <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/> <!--  relative-to-action="AnalyzeMenu" -->
+    </action>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
