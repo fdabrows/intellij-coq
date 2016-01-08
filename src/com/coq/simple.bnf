@@ -1,0 +1,76 @@
+{
+    parserClass = "com.coq.parser.CoqParser"
+
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Coq"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.coq.psi"
+    psiImplPackage="com.coq.psi.impl"
+
+    elementTypeHolderClass="com.coq.psi.CoqTypes"
+    elementTypeClass="com.coq.psi.CoqElementType"
+    tokenTypeClass="com.coq.psi.CoqTokenType"
+
+    psiImplUtilClass="com.coq.psi.impl.CoqPsiImplUtil"
+}
+
+coqFile ::= (commentary | def_general | LBRACK | RBRACK | COMMENT )*
+
+commentary ::= COMOPEN (any | DOT)* (commentary (any | DOT)*)? COMCLOSE
+
+anytowith ::=
+| ID | NUMBER
+| KEYWORD | COMMAND | TACTIC
+| MID | COMMA | BIGARROW | ARROW
+| COLON | SEMICOLON
+| LPAR | RPAR | LBRACK | RBRACK
+| LSQBRACK | RSQBRACK
+| ASSIGN
+| FDOT | ANYBUTDOT
+
+withany ::= anytowith* MATCH withany WITH withany END | anytowith*
+
+any ::=
+| ID | NUMBER
+| KEYWORD | COMMAND | TACTIC
+| MID | COMMA | BIGARROW | ARROW
+| COLON | SEMICOLON
+| LPAR | RPAR | LBRACK | RBRACK
+| LSQBRACK | RSQBRACK
+| ASSIGN
+| MATCH | WITH | END
+| FDOT | ANYBUTDOT
+
+def_general ::=
+    | definition
+    | fixpoint
+    | cofixpoint
+    | inductive
+    | assertion
+    | PROOF_KW DOT
+    | (QED | DEFINED | ADMITTED) DOT
+    | any+ DOT
+
+definition ::= DEFINITION_KW ID any+ DOT
+
+fixpoint ::= FIXPOINT_KW (fix_body (WITH fix_body)* DOT | any+ DOT)
+
+fix_body ::= ID withany
+
+inductive ::= INDUCTIVE_KW (ind_body (WITH ind_body)* DOT | any+ DOT)
+
+ind_body ::= ID withany
+
+cofixpoint ::= COFIXPOINT_KW any+ DOT
+
+assertion ::= assertion_keyword ID any+ DOT
+
+assertion_keyword ::=
+    | THEOREM_KW | LEMMA_KW
+    | REMARK_KW | FACT_KW
+    | COROLLARY_KW | PROPOSITION_KW
+    | EXAMPLE_KW
+
+
+
