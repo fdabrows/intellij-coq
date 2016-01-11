@@ -15,13 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq.errors;
+package com.coq.toplevel;
 
-public class InvalidPrompt extends Exception {
+public class CoqState {
 
-    public final String str;
+    public final int globalCounter;
+    public final int proofCounter;
+    public final int offset;
 
-    public InvalidPrompt(String str){
-        this.str = str;
+    public CoqState(CoqTopLevelPrompt prompt, int offset){
+        this.globalCounter = prompt.getGlobalCounter();
+        this.proofCounter = prompt.getProofCounter();
+        this.offset = offset;
     }
+
+    public String toString(){
+        return "(" + globalCounter +" | " + proofCounter + " | " + offset +")";
+    }
+
 }

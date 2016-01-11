@@ -34,10 +34,6 @@ import com.intellij.psi.tree.TokenSet;
 import com.coq.psi.CoqFile;
 import org.jetbrains.annotations.NotNull;
 
-
-/**
- * Created by Dabrowski on 27/11/2015.
- */
 public class CoqParserDefinition implements ParserDefinition {
 
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);

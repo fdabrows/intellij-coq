@@ -1,4 +1,3 @@
-
 /*
  * IntelliJ-coqplugin  / Plugin IntelliJ for Coq
  * Copyright (c) 2016
@@ -26,18 +25,17 @@ import sun.security.pkcs11.Secmod;
 
 import javax.swing.*;
 
-/**
- * Created by dabrowski on 06/01/2016.
- */
 public class CoqModuleType extends ModuleType{
 
     public CoqModuleType(){
-     super("Coq");
+
+        super("Coq");
     }
 
     @NotNull
     @Override
     public ModuleBuilder createModuleBuilder() {
+        //return new CoqProjectWizard();
         return null;
     }
 
@@ -50,16 +48,19 @@ public class CoqModuleType extends ModuleType{
     @NotNull
     @Override
     public String getDescription() {
+
         return "Create a new Coq Project";
     }
 
     @Override
     public Icon getBigIcon() {
+
         return IconLoader.getIcon("/com/coq/icons/r.png");
     }
 
     @Override
     public Icon getNodeIcon(@Deprecated boolean b) {
+
         return IconLoader.getIcon("/com/coq/icons/r.png");
     }
 }

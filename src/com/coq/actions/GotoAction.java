@@ -17,9 +17,8 @@
 
 package com.coq.actions;
 
-import com.coq.CoqtopEngine;
-import com.coq.InvalidState;
-import com.coq.errors.CoqtopPathError;
+import com.coq.toplevel.CoqtopEngine;
+import com.coq.errors.InvalidState;
 import com.coq.errors.InvalidPrompt;
 import com.coq.errors.NoCoqProcess;
 import com.intellij.openapi.actionSystem.AnAction;

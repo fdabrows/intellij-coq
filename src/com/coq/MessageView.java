@@ -17,9 +17,12 @@
 
 package com.coq;
 
-import com.coq.errors.CoqtopPathError;
 import com.coq.errors.InvalidPrompt;
+import com.coq.errors.InvalidState;
 import com.coq.errors.NoCoqProcess;
+import com.coq.toplevel.CoqState;
+import com.coq.toplevel.CoqStateListener;
+import com.coq.toplevel.CoqtopEngine;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
@@ -34,9 +37,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-/**
- * Created by dabrowski on 28/12/2015.
- */
 public class MessageView implements ToolWindowFactory, MessageTextListener, CoqStateListener {
     private JTextArea textArea1;
     private JPanel panel1;
@@ -47,7 +47,6 @@ public class MessageView implements ToolWindowFactory, MessageTextListener, CoqS
     private JButton button5;
     private JButton button6;
     private JTextField textField1;
-    private JTextArea textArea2;
     private ToolWindow myToolWindow;
 
     private Project project;

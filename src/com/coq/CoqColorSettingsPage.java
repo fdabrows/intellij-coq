@@ -29,6 +29,7 @@ import javax.swing.*;
 import java.util.Map;
 
 public class CoqColorSettingsPage implements ColorSettingsPage {
+
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Commands", CoqSyntaxHighlighter.COMMAND),
             new AttributesDescriptor("CoqKeywords", CoqSyntaxHighlighter.KEYWORD),

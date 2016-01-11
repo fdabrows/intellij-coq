@@ -24,9 +24,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-/**
- * Created by Dabrowski on 21/11/2015.
- */
 public class CoqFileType extends LanguageFileType {
 
     public static final CoqFileType INSTANCE = new CoqFileType();

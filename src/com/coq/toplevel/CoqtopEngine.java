@@ -15,10 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.toplevel;
 
+import com.coq.*;
 import com.coq.errors.CoqtopPathError;
 import com.coq.errors.InvalidPrompt;
+import com.coq.errors.InvalidState;
 import com.coq.errors.NoCoqProcess;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -27,7 +29,6 @@ import com.intellij.openapi.editor.markup.HighlighterTargetArea;
 import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.util.indexing.FileContentImpl;
 import com.intellij.util.ui.UIUtil;
 
 import javax.swing.*;
@@ -93,7 +94,9 @@ public class CoqtopEngine implements CoqStateListener {
 
         this.editor = editor;
 
-        proofTopLevel = CoqTopLevel.getCoqTopLevel();
+
+
+        proofTopLevel = CoqTopLevel.getCoqTopLevel(editor);
         response = proofTopLevel.start();
         coqStates.add(new CoqState(response.prompt, 0));
 

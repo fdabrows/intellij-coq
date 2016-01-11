@@ -1,4 +1,3 @@
-
 /*
  * IntelliJ-coqplugin  / Plugin IntelliJ for Coq
  * Copyright (c) 2016
@@ -16,16 +15,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.compiler;
 
-import com.intellij.openapi.fileTypes.FileTypeConsumer;
-import com.intellij.openapi.fileTypes.FileTypeFactory;
+import com.intellij.openapi.compiler.FileProcessingCompiler;
+import com.intellij.openapi.compiler.ValidityState;
+import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class CoqFileTypeFactory extends FileTypeFactory {
+/**
+ * Created by dabrowski on 11/01/2016.
+ */
+public class CoqProcessingItem implements FileProcessingCompiler.ProcessingItem{
 
+    @NotNull private final VirtualFile myFile;
+    @Nullable private final ValidityState myState;
+
+    public CoqProcessingItem(@NotNull final VirtualFile file, @Nullable final ValidityState state) {
+        myFile = file;
+        myState = state;
+    }
+
+    @NotNull
     @Override
-    public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer){
-        fileTypeConsumer.consume(CoqFileType.INSTANCE, "instance");
+    public VirtualFile getFile() {
+        return myFile;
+    }
+
+    @Nullable
+    @Override
+    public ValidityState getValidityState() {
+        return myState;
     }
 }

@@ -17,9 +17,6 @@
 
 package com.coq;
 
-/**
- * Created by dabrowski on 27/12/2015.
- */
 import com.coq.psi.*;
 import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.ide.util.treeView.smartTree.SortableTreeElement;
@@ -40,8 +37,6 @@ public class CoqStructureViewElement implements StructureViewTreeElement, Sortab
     private static Icon r_icon = IconLoader.getIcon("/com/coq/icons/r.png");
     private static Icon d_icon = IconLoader.getIcon("/com/coq/icons/d.png");
     private static Icon barron_icon = IconLoader.getIcon("/com/coq/icons/barron_logo.png");
-    private static Icon p_icon = IconLoader.getIcon("/com/coq/icons/p.png");
-    private static Icon f_icon = IconLoader.getIcon("/com/coq/icons/f.png");
 
     private PsiElement element;
 
@@ -106,19 +101,14 @@ public class CoqStructureViewElement implements StructureViewTreeElement, Sortab
         public Icon getIcon(boolean b) {
             if (element instanceof CoqAssertion) {
                 return r_icon;
-                //return IconLoader.getIcon("/com/coq/icons/r.png");
             } else if (element instanceof CoqFixBody) {
                 return d_icon;
-                //return IconLoader.getIcon("/com/coq/icons/d.png");
             } else if (element instanceof CoqIndBody) {
                 return d_icon;
-                //return IconLoader.getIcon("/com/coq/icons/d.png");
             } else if (element instanceof CoqDefinition) {
                 return d_icon;
-                //return IconLoader.getIcon("/com/coq/icons/d.png");
             } else if (element instanceof CoqInductive) {
                 return d_icon;
-                //return IconLoader.getIcon("/com/coq/icons/d.png");
             }
             else return barron_icon;
         }
@@ -152,10 +142,6 @@ public class CoqStructureViewElement implements StructureViewTreeElement, Sortab
             System.out.println(element.getText());
             return new MyPresentation("Bidon", "Bidon");
         }
-        //return ((NavigationItem) element).getPresentation();
-
-/*        return element instanceof NavigationItem ?
-                ((NavigationItem) element).getPresentation() : null;*/
     }
 
     @Override

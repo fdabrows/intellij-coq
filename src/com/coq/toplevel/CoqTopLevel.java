@@ -15,11 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.toplevel;
 
 import com.coq.errors.CoqtopPathError;
 import com.coq.errors.InvalidPrompt;
 import com.coq.errors.NoCoqProcess;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.projectRoots.Sdk;
+import com.intellij.openapi.roots.ProjectRootManager;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,9 +33,6 @@ import java.util.regex.Pattern;
  * Created by dabrowski on 31/12/2015.
  */
 public class CoqTopLevel {
-
-    public static final String UNDO = "Undo.";
-    public static final String QUIT = "Quit.";
 
     private Process p;
     private String proc;
@@ -47,11 +47,16 @@ public class CoqTopLevel {
         this.proc = str;
     }
 
-    public static CoqTopLevel getCoqTopLevel() throws CoqtopPathError {
-        String proc = CoqSettings.getInstance().coqbin;
+    public static CoqTopLevel getCoqTopLevel(Editor editor) throws CoqtopPathError {
+
+        Sdk projectSdk = ProjectRootManager.getInstance(editor.getProject()).getProjectSdk();
+        //System.out.println(projectSdk.getHomePath());
+
+        String proc = projectSdk.getHomePath();
+
         if (proc == null) throw new CoqtopPathError();
-        else if (new File(proc+"/coqtop").isFile())
-            return new CoqTopLevel(proc + "/coqtop -emacs");
+        else if (new File(proc+"/bin/coqtop").canExecute())
+            return new CoqTopLevel(proc + "/bin/coqtop -emacs");
         else throw new CoqtopPathError();
         }
 

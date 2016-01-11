@@ -24,6 +24,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation = "com.coq.CoqFileTypeFactory"/>
+    <moduleBuilder builderClass="com.coq.CoqProjectWizard" id="Coq Project" order="first"/>
     <lang.parserDefinition language="Coq" implementationClass="com.coq.CoqParserDefinition"/>
     <lang.syntaxHighlighterFactory key="Coq" implementationClass="com.coq.CoqSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.coq.CoqColorSettingsPage"/>
@@ -32,17 +33,29 @@
                 factoryClass="com.coq.ProofView"/>
     <toolWindow id="Messages" icon="/com/coq/icons/logo.png" anchor="bottom"
                 factoryClass="com.coq.MessageView"/>
-    <moduleBuilder builderClass="com.coq.CoqProjectWizard" id="Coq Project" order="first"/>
+
     <!-- <compiler implementation="com.coq.actions.CompileAction" /> -->
     <applicationService serviceImplementation="com.coq.CoqSettings"/>
     <treeStructureProvider implementation="com.coq.CoqTreeStructureProvider"/>
     <!-- Add your extensions here -->
     <!-- <configurationType implementation="com.coq.CoqRunConfigurationType"/>-->
-    <applicationConfigurable instance="com.coq.CoqSettingsConfigurable" groupId="build" displayName="Coq"/>
+   <!--  <applicationConfigurable instance="com.coq.CoqSettingsConfigurable" groupId="build" displayName="Coq"/> -->
     <!-- Add your extensions here -->
+    <createFromTemplateHandler implementation="com.coq.CoqCreateFromTemplateHandler"/>
+    <defaultLiveTemplatesProvider implementation="com.coq.CoqLiveTemplateProvider"/>
+    <internalFileTemplate name="Coq Module"/>
+    <liveTemplateContext implementation="com.coq.CoqContextType$Generic"/>
+    <sdkType implementation="com.coq.sdk.CoqSdkType"/>
+    <configurationType implementation="com.coq.run.CoqRunConfigurationType"/>
+    <compiler implementation="com.coq.compiler.CoqCompiler"/>
+
   </extensions>
 
   <actions>
+    <action id="com.com.actions.CreateCoqFileAction" class="com.coq.actions.CreateCoqFileAction"
+            text="Coq Module" description="Create new Coq module">
+      <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
+    </action>
     <group id="CoqMenu" text="Coq" description="Coq actions"  popup="true">
       <action id="com.coq.actions.NextAction" class="com.coq.actions.NextAction" text="Next"
               description="Next Line">

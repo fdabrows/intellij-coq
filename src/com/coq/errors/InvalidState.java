@@ -15,10 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.errors;
 
-/**
- * Created by dabrowski on 08/01/2016.
- */
 public class InvalidState extends Exception{
 }

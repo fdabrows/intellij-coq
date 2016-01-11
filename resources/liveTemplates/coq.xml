@@ -1,0 +1,27 @@
+<!--
+  ~ IntelliJ-coqplugin  / Plugin IntelliJ for Coq
+  ~ Copyright (c) 2016
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<templateSet group="coq">
+    <template name="lemma" value="Lemma $NAME$ : $VALUE$.&#10;Proof.&#10;Qed." description="Lemma Qeq" toReformat="true" toShortenFQNames="true">
+        <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="COQ_CODE" value="true" />
+            <option name="OTHER" value="false" />
+        </context>
+    </template>
+</templateSet>

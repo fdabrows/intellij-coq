@@ -31,14 +31,17 @@ public class CoqSettings implements PersistentStateComponent<CoqSettings> {
     public String coqbin;
 
     public static CoqSettings getInstance(){
+
         return ServiceManager.getService(CoqSettings.class);
     }
 
     public CoqSettings getState() {
+
         return this;
     }
 
     public void loadState(CoqSettings state) {
+
         XmlSerializerUtil.copyBean(state, this);
     }
 }

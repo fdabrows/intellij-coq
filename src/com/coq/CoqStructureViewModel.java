@@ -17,9 +17,6 @@
 
 package com.coq;
 
-/**
- * Created by dabrowski on 27/12/2015.
- */
 import com.intellij.ide.structureView.StructureViewModel;
 import com.intellij.ide.structureView.StructureViewModelBase;
 import com.intellij.ide.structureView.StructureViewTreeElement;

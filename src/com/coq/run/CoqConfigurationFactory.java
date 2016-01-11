@@ -1,4 +1,3 @@
-
 /*
  * IntelliJ-coqplugin  / Plugin IntelliJ for Coq
  * Copyright (c) 2016
@@ -16,16 +15,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.run;
 
-import com.intellij.openapi.fileTypes.FileTypeConsumer;
-import com.intellij.openapi.fileTypes.FileTypeFactory;
+import com.intellij.execution.configurations.ConfigurationFactory;
+import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
 
-public class CoqFileTypeFactory extends FileTypeFactory {
+/**
+ * Created by dabrowski on 11/01/2016.
+ */
+public class CoqConfigurationFactory extends ConfigurationFactory {
+
+    private static final String FACTORY_NAME = "Coq configuration factory";
+
+    public CoqConfigurationFactory(CoqRunConfigurationType coqRunConfiguration) {
+        super(coqRunConfiguration);
+    }
+
+
+    @NotNull
+    @Override
+    public RunConfiguration createTemplateConfiguration(@NotNull Project project) {
+        return new CoqRunConfiguration(project, this, "Coq");
+
+    }
 
     @Override
-    public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer){
-        fileTypeConsumer.consume(CoqFileType.INSTANCE, "instance");
+    public String getName(){
+        return FACTORY_NAME;
     }
 }

@@ -19,6 +19,7 @@ package com.coq;
 
 import com.coq.psi.CoqTypes;
 import com.intellij.psi.tree.IElementType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -143,11 +144,9 @@ public class CoqKeywords {
 
     }
 
+    @Nullable
     public static IElementType getIElementType(String str){
         return table.get(str);
     }
-
-
-
 
 }

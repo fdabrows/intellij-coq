@@ -28,9 +28,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- * Created by dabrowski on 08/01/2016.
- */
 public class CoqTreeStructureProvider implements TreeStructureProvider{
 
 

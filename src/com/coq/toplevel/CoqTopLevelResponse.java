@@ -15,11 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.toplevel;
 
-/**
- * Created by dabrowski on 05/01/2016.
- */
 public class CoqTopLevelResponse {
 
     public final String preprompt;

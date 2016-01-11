@@ -42,12 +42,9 @@ public class CoqSyntaxHighlighter extends SyntaxHighlighterBase {
 
     private static final TextAttributesKey[] COMMAND_KEYS = new TextAttributesKey[]{COMMAND};
     private static final TextAttributesKey[] KEYWORD_KEYS = new TextAttributesKey[]{KEYWORD};
-    private static final TextAttributesKey[] KIND_KEYS = new TextAttributesKey[]{KIND};
-    private static final TextAttributesKey[] NAME_KEYS = new TextAttributesKey[]{NAME};
     private static final TextAttributesKey[] FORMULAE_KEYS = new TextAttributesKey[]{FORMULAE};
     private static final TextAttributesKey[] TACTIC_KEYS = new TextAttributesKey[]{TACTIC};
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
-    private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
 

@@ -17,13 +17,14 @@
 
 package com.coq.actions;
 
-import com.coq.CoqtopEngine;
-import com.coq.InvalidState;
-import com.coq.errors.CoqtopPathError;
+import com.coq.toplevel.CoqtopEngine;
+import com.coq.errors.InvalidState;
 import com.coq.errors.InvalidPrompt;
 import com.coq.errors.NoCoqProcess;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.DataContext;
+import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
@@ -51,5 +52,15 @@ public class NextAction extends AnAction{
         } catch (InvalidState invalidState) {
             invalidState.printStackTrace();
         }
+    }
+
+    @Override
+    public void update(final AnActionEvent event)
+    {
+        DataContext dataContext = event.getDataContext();
+        boolean enabled = true; //whatever criteria you have for when it's visible/enabled
+        Presentation presentation = event.getPresentation();
+        presentation.setVisible(enabled);
+        presentation.setEnabled(enabled);
     }
 }

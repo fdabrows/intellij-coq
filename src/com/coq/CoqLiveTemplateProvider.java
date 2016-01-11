@@ -17,13 +17,25 @@
 
 package com.coq;
 
-import com.intellij.openapi.editor.Editor;
-
-import java.util.EventListener;
+import com.intellij.codeInsight.template.impl.DefaultLiveTemplatesProvider;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by dabrowski on 23/12/2015.
+ * Created by dabrowski on 11/01/2016.
  */
-public interface CoqStateListener extends EventListener {
-    void coqStateChangee(CoqState c);
+public class CoqLiveTemplateProvider implements DefaultLiveTemplatesProvider {
+
+    public static final String[] TEMPLATE_FILES = {"liveTemplates/coq"};
+
+    @Override
+    public String[] getDefaultLiveTemplateFiles() {
+        return TEMPLATE_FILES;
+        //return new String[0];
+    }
+
+    @Nullable
+    @Override
+    public String[] getHiddenLiveTemplateFiles() {
+        return new String[0];
+    }
 }

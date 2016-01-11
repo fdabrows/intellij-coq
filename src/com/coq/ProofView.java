@@ -17,8 +17,9 @@
 
 package com.coq;
 
-import com.coq.errors.CoqtopPathError;
 import com.coq.errors.InvalidPrompt;
+import com.coq.errors.InvalidState;
+import com.coq.toplevel.CoqtopEngine;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
@@ -31,9 +32,6 @@ import com.intellij.ui.content.ContentFactory;
 import javax.swing.*;
 import java.io.IOException;
 
-/**
- * Created by dabrowski on 28/12/2015.
- */
 public class ProofView implements ToolWindowFactory, ProofTextListener {
     private JTextArea textArea1;
     private JPanel panel1;

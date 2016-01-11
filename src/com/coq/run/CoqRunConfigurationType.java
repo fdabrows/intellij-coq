@@ -15,57 +15,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.coq;
+package com.coq.run;
 
-import com.intellij.openapi.options.Configurable;
-import com.intellij.openapi.options.ConfigurationException;
-import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.Nullable;
+import com.coq.CoqIcons;
+import com.intellij.execution.configurations.ConfigurationFactory;
+import com.intellij.execution.configurations.ConfigurationType;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
-public class CoqSettingsConfigurable implements Configurable {
-
-    CoqSettingsEditor settings;
-
-    @Nls
+/**
+ * Created by dabrowski on 11/01/2016.
+ */
+public class CoqRunConfigurationType implements ConfigurationType{
     @Override
     public String getDisplayName() {
         return "Coq";
     }
 
-    @Nullable
     @Override
-    public String getHelpTopic() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public JComponent createComponent() {
-        settings = new CoqSettingsEditor();
-        settings.setContent(CoqSettings.getInstance());
-        return settings.createEditor();
+    public String getConfigurationTypeDescription() {
+        return "Cor Run Configuration Type";
     }
 
     @Override
-    public boolean isModified() {
-        return true;
+    public Icon getIcon() {
+        return CoqIcons.FILE;
+    }
+
+    @NotNull
+    @Override
+    public String getId() {
+        return "COQ_RUN_CONFIGURATION";
     }
 
     @Override
-    public void apply() throws ConfigurationException {
-        CoqSettings.getInstance().loadState(settings.getContent());
+    public ConfigurationFactory[] getConfigurationFactories() {
+        return new ConfigurationFactory[]{new CoqConfigurationFactory(this)};
     }
-
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void disposeUIResources() {
-
-    }
-
 }
