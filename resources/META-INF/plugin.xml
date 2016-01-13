@@ -1,6 +1,23 @@
+<!--
+  ~ IntelliJ-coqplugin  / Plugin IntelliJ for Coq
+  ~ Copyright (c) 2016
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
 <idea-plugin version="2">
-  <id>com.univ-orleans.coqplugin</id>
-  <name>Coq IDE</name>
+  <id>org.intellij.coq</id>
+  <name>Coq</name>
   <version>0.1</version>
   <vendor email="frederic.dabrowski@univ-orleans.fr" url="http://www.univ-orleans.fr">University of Orleans</vendor>
 
@@ -23,68 +40,70 @@
   -->
 
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation = "com.coq.CoqFileTypeFactory"/>
-    <moduleBuilder builderClass="com.coq.CoqProjectWizard" id="Coq Project" order="first"/>
-    <lang.parserDefinition language="Coq" implementationClass="com.coq.CoqParserDefinition"/>
-    <lang.syntaxHighlighterFactory key="Coq" implementationClass="com.coq.CoqSyntaxHighlighterFactory"/>
-    <colorSettingsPage implementation="com.coq.CoqColorSettingsPage"/>
-    <lang.psiStructureViewFactory language="Coq" implementationClass="com.coq.CoqStructureViewFactory"/>
-    <toolWindow id="Proof tree" icon="/com/coq/icons/logo.png" anchor="right"
-                factoryClass="com.coq.ProofView"/>
-    <toolWindow id="Messages" icon="/com/coq/icons/logo.png" anchor="bottom"
-                factoryClass="com.coq.MessageView"/>
-
-    <!-- <compiler implementation="com.coq.actions.CompileAction" /> -->
-    <applicationService serviceImplementation="com.coq.CoqSettings"/>
-    <treeStructureProvider implementation="com.coq.CoqTreeStructureProvider"/>
-    <!-- Add your extensions here -->
-    <!-- <configurationType implementation="com.coq.CoqRunConfigurationType"/>-->
-   <!--  <applicationConfigurable instance="com.coq.CoqSettingsConfigurable" groupId="build" displayName="Coq"/> -->
-    <!-- Add your extensions here -->
-    <createFromTemplateHandler implementation="com.coq.CoqCreateFromTemplateHandler"/>
-    <defaultLiveTemplatesProvider implementation="com.coq.CoqLiveTemplateProvider"/>
+    <moduleBuilder builderClass="org.intellij.coq.module.CoqModuleBuilder" id="COQ_MODULE" order="first"/>
+    <moduleType id="COQ_MODULE" classpathProvider="false" implementationClass="org.intellij.coq.module.CoqModuleType"/>
+    <sdkType id="COQ" implementation="org.intellij.coq.sdk.CoqSdkType"/>
+    <compiler implementation="org.intellij.coq.compiler.CoqCompiler"/>
+    <fileTypeFactory implementation = "org.intellij.coq.CoqFileTypeFactory"/>
+    <lang.parserDefinition language="Coq" implementationClass="org.intellij.coq.CoqParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="Coq" implementationClass="org.intellij.coq.highlighter.CoqSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="org.intellij.coq.CoqColorSettingsPage"/>
+    <lang.commenter language="Coq" implementationClass="org.intellij.coq.highlighter.CoqCommenter"/>
+    <lang.psiStructureViewFactory language="Coq" implementationClass="org.intellij.coq.structure.CoqStructureViewFactory"/>
+    <applicationService serviceImplementation="org.intellij.coq.CoqSettings"/>
+    <treeStructureProvider implementation="org.intellij.coq.structure.CoqTreeStructureProvider"/>
+    <createFromTemplateHandler implementation="org.intellij.coq.CoqCreateFromTemplateHandler"/>
+    <defaultLiveTemplatesProvider implementation="org.intellij.coq.CoqLiveTemplateProvider"/>
     <internalFileTemplate name="Coq Module"/>
-    <liveTemplateContext implementation="com.coq.CoqContextType$Generic"/>
-    <sdkType implementation="com.coq.sdk.CoqSdkType"/>
-    <configurationType implementation="com.coq.run.CoqRunConfigurationType"/>
-    <compiler implementation="com.coq.compiler.CoqCompiler"/>
+    <liveTemplateContext implementation="org.intellij.coq.CoqContextType$Generic"/>
+    <!-- <configurationType implementation="org.intellij.coq.run.CoqRunConfigurationType"/> -->
+
+    <toolWindow id="Coqtop Messages"  anchor="bottom"
+                factoryClass="org.intellij.coq.toolWindow.CoqMessageView"/>
+    <toolWindow id="Coq Proof tree" anchor="right"
+                factoryClass="org.intellij.coq.toolWindow.ProofView"/>
+    <toolWindow id="Coq Compiler"  anchor="bottom"
+                factoryClass="org.intellij.coq.toolWindow.CompilerView"/>
 
   </extensions>
 
   <actions>
-    <action id="com.com.actions.CreateCoqFileAction" class="com.coq.actions.CreateCoqFileAction"
+    <action id="org.intellij.coq.actions.CreateCoqFileAction" class="org.intellij.coq.actions.CreateCoqFileAction"
+            icon="/org/intellij/coq/icons/barron_logo.png"
             text="Coq Module" description="Create new Coq module">
       <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
     </action>
-    <group id="CoqMenu" text="Coq" description="Coq actions"  popup="true">
-      <action id="com.coq.actions.NextAction" class="com.coq.actions.NextAction" text="Next"
+    <group id="CoqMenu" text="Coq" description="Coq actions"  popup="false" >
+      <separator/>
+
+      <action id="org.intellij.coq.actions.NextAction" class="org.intellij.coq.actions.NextAction" text="Next"
+              icon="/org/intellij/coq/icons/left.png"
               description="Next Line">
       </action>
-      <action id="com.coq.actions.BackAction" class="com.coq.actions.BackAction" text="Undo"
+      <action id="org.intellij.coq.actions.BackAction" class="org.intellij.coq.actions.BackAction" text="Undo"
+              icon="/org/intellij/coq/icons/right.png"
               description="Last Line">
       </action>
-      <action id="com.coq.actions.UseAction" class="com.coq.actions.UseAction" text="Use"
+      <action id="org.intellij.coq.actions.UseAction" class="org.intellij.coq.actions.UseAction" text="Use"
+              icon="/org/intellij/coq/icons/lleft.png"
               description="End of file">
       </action>
-      <action id="com.coq.actions.RetractAction" class="com.coq.actions.RetractAction" text="Retract"
+      <action id="org.intellij.coq.actions.RetractAction" class="org.intellij.coq.actions.RetractAction" text="Retract"
+              icon="/org/intellij/coq/icons/rright.png"
               description="Last Line">
       </action>
-      <action id="com.coq.actions.GotoAction" class="com.coq.actions.GotoAction" text="Go to cursor"
+      <action id="org.intellij.coq.actions.GotoAction" class="org.intellij.coq.actions.GotoAction" text="Go to cursor"
+              icon="/org/intellij/coq/icons/goto.png"
               description="Last Line">
       </action>
       <separator/>
-      <add-to-group group-id="MainMenu" relative-to-action="ToolsMenu" anchor="before"/>
-      <action id="com.coq.actions.StopAction" class="com.coq.actions.StopAction" text="Stop coqtop"
+      <!-- <add-to-group group-id="MainMenu" relative-to-action="ToolsMenu" anchor="before"/>-->
+      <add-to-group group-id="RunMenu" relative-to-action="Runner.Layout" anchor="before"/>
+      <action id="org.intellij.coq.actions.StopAction" class="org.intellij.coq.actions.StopAction" text="Stop coqtop"
+              icon="/org/intellij/coq/icons/stop.png"
               description="Last Line">
       </action>
     </group>
-
-    <action id="com.coq.actions.CompileAction" class="com.coq.actions.CompileAction" text="Compile"
-            description="Compile">
-      <add-to-group group-id="MainMenu" anchor="first"/>
-      <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
-      <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/> <!--  relative-to-action="AnalyzeMenu" -->
-    </action>
     <!-- Add your actions here -->
   </actions>
 
