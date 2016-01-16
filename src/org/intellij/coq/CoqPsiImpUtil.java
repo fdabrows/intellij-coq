@@ -18,7 +18,8 @@
 package org.intellij.coq;
 
 import com.intellij.lang.ASTNode;
-import org.intellij.coq.psi.*;
+import org.intellij.coq.jps.psi.*;
+import org.intellij.coq.psi.CoqFile;
 
 public class CoqPsiImpUtil {
 

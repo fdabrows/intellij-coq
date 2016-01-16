@@ -20,7 +20,7 @@ package org.intellij.coq.highlighter;
 import com.intellij.lang.CodeDocumentationAwareCommenter;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.tree.IElementType;
-import org.intellij.coq.psi.CoqTypes;
+import org.intellij.coq.jps.psi.CoqTypes;
 import org.jetbrains.annotations.Nullable;
 
 /**

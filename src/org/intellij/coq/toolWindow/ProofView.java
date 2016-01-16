@@ -18,8 +18,8 @@
 package org.intellij.coq.toolWindow;
 
 import org.intellij.coq.errors.InvalidPrompt;
-import org.intellij.coq.listeners.ProofTextListener;
 import org.intellij.coq.errors.InvalidState;
+import org.intellij.coq.listeners.ProofTextListener;
 import org.intellij.coq.toplevel.CoqtopEngine;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;

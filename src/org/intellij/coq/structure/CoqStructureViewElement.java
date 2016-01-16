@@ -26,7 +26,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
 import org.intellij.coq.CoqPsiImpUtil;
 import org.intellij.coq.CoqIcons;
-import org.intellij.coq.psi.*;
+import org.intellij.coq.jps.psi.*;
+import org.intellij.coq.psi.CoqFile;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;

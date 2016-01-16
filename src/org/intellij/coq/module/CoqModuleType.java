@@ -22,7 +22,6 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.projectRoots.Sdk;
 import org.intellij.coq.CoqIcons;
-import org.intellij.coq.sdk.CoqSdkType;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

@@ -9,8 +9,8 @@
     psiImplPackage="org.intellij.coq.psi.impl"
 
     elementTypeHolderClass="org.intellij.coq.psi.CoqTypes"
-    elementTypeClass="org.intellij.coq.intellij.coq.psi.CoqElementType"
-    tokenTypeClass="org.intellij.coq.intellij.coq.psi.CoqTokenType"
+    elementTypeClass="org.intellij.coq.psi.CoqElementType"
+    tokenTypeClass="org.intellij.coq.psi.CoqTokenType"
 
     psiImplUtilClass="org.intellij.coq.psi.impl.CoqPsiImplUtil"
 }

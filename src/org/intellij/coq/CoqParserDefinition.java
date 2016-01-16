@@ -17,8 +17,8 @@
 
 package org.intellij.coq;
 
-import org.intellij.coq.parser.CoqParser;
-import org.intellij.coq.psi.CoqTypes;
+import org.intellij.coq.jps.parser.CoqParser;
+import org.intellij.coq.jps.psi.CoqTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
 import com.intellij.lang.ParserDefinition;

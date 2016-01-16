@@ -25,7 +25,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
 import org.intellij.coq.CoqLexerAdapter;
-import org.intellij.coq.psi.CoqTypes;
+import org.intellij.coq.jps.psi.CoqTypes;
 import org.jetbrains.annotations.NotNull;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;

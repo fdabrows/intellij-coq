@@ -19,6 +19,8 @@ package org.intellij.coq.sdk;
 
 import com.intellij.openapi.projectRoots.*;
 import com.intellij.openapi.util.SystemInfo;
+import org.intellij.coq.jps.model.JpsCoqModelSerializerExtension;
+import org.intellij.coq.jps.model.JpsCoqSdkType;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,8 +35,7 @@ public class CoqSdkType extends SdkType {
     public static final CoqSdkType INSTANCE = new CoqSdkType();
 
     public CoqSdkType() {
-        super("COQ");
-        System.out.println("CoqSdkType");
+        super(JpsCoqModelSerializerExtension.COQ_SDK_TYPE_ID);
     }
 
     @NotNull
@@ -61,9 +62,10 @@ public class CoqSdkType extends SdkType {
     }
 
     @Override
-    public boolean isValidSdkHome(String s) {
-        File file = new File(s+"/bin/coqtop");
-        return file.canExecute();
+    public boolean isValidSdkHome(String path) {
+        File erl = JpsCoqSdkType.getByteCodeInterpreterExecutable(path);
+        File erlc = JpsCoqSdkType.getByteCodeCompilerExecutable(path);
+        return erl.canExecute() && erlc.canExecute();
     }
 
     @Override

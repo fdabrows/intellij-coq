@@ -17,7 +17,7 @@
 
 package org.intellij.coq;
 
-import org.intellij.coq.psi.CoqTypes;
+import org.intellij.coq.jps.psi.CoqTypes;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.Nullable;
 

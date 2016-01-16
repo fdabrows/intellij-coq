@@ -30,6 +30,8 @@
     ]]>
   </change-notes>
 
+
+  <depends optional="true" config-file="java-deps.xml">com.intellij.modules.java</depends>
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
   <idea-version since-build="141.0"/>
 
@@ -41,9 +43,11 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <moduleBuilder builderClass="org.intellij.coq.module.CoqModuleBuilder" id="COQ_MODULE" order="first"/>
-    <moduleType id="COQ_MODULE" classpathProvider="false" implementationClass="org.intellij.coq.module.CoqModuleType"/>
     <sdkType id="COQ" implementation="org.intellij.coq.sdk.CoqSdkType"/>
-    <compiler implementation="org.intellij.coq.compiler.CoqCompiler"/>
+
+
+
+    <!-- <compiler implementation="org.intellij.coq.compiler.CoqCompiler"/> -->
     <fileTypeFactory implementation = "org.intellij.coq.CoqFileTypeFactory"/>
     <lang.parserDefinition language="Coq" implementationClass="org.intellij.coq.CoqParserDefinition"/>
     <lang.syntaxHighlighterFactory language="Coq" implementationClass="org.intellij.coq.highlighter.CoqSyntaxHighlighterFactory"/>
@@ -106,5 +110,9 @@
     </group>
     <!-- Add your actions here -->
   </actions>
-
+  <application-components>
+    <component>
+      <implementation-class>org.intellij.coq.UpdateComponent</implementation-class>
+    </component>
+  </application-components>
 </idea-plugin>
